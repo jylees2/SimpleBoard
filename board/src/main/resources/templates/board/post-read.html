@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>글 상세</title>
+  		<th:block th:replace="fragment/head :: headFragment"></th:block>
+	</head>
+	<body>
+		<header th:replace="fragment/header :: headerFragment"></header>
+			<div class="page-header">
+				<h1>게시물 상세</h1>
+			</div>
+			<a href="/post" role="button" class="btn btn-primary btn-block">글 작성</a>
+			
+			<br/>
+			<br/>
+			<br/>
+			<div id="post_list" class="container col-md-8">
+				<div class="card-header d-flex justify-content-between">
+					<label for="id">글 번호 : [[${id}]]</label>
+					<input type="hidden" id = "id" th:value="${id}"/>
+					<label for="idx">조회수 : [[${post.view}]]</label>
+
+					<label for="modifiedDate">작성 날짜 : [[${post.modifiedDate}]]</label>
+				</div>
+				<table class="table table-hover">
+					<tr>
+						<th style="padding:13px 0 0 15px;">제목</th>
+						<td>
+							<input type="text" id="title" class="form-control input-sm" readonly th:value="${post.title}"/>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding:14px 0 0 15px;">내용</th>
+						<td>
+							<textarea id="content" class="form-control input-sm"
+								maxlength="140" rows="70" style="height: 200px;"
+								th:text="${post.content}" readonly></textarea>
+							<span class="help-block"></span>
+						</td>
+					</tr>
+				</table>
+				<br/>
+				<a th:href="'/post/update/'+${post.id}" role="button" class="btn btn-primary btn-block">수정</a>
+				<button type="button" onclick="" id="btn-delete" class="btn btn-danger bi">삭제</button>
+				<a href="/list" role="button" class="btn btn btn-info bi">목록</a>
+			</div>
+			
+			<th:block th:replace="comment/form :: commentFormFragment"></th:block>
+			<th:block th:replace="comment/list :: commentListFragment"></th:block>
+		<th:block th:replace="fragment/script :: script"></th:block>	
+	</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <div th:fragment="commentFormFragment">
+  	<div class="container col-md-8">
+  		<div class="card-header bi-chat-right-dots"> 댓글 작성 </div>
+  		<!--  댓글 작성 -->
+  		<form>
+  			<input type="hidden" id="postId" th:value="${post.id}">
+  			<div class="card-body">
+  				<textarea id="comment" class="form-control" rows="4" placeholder="댓글을 입력하세요."></textarea>
+  			</div>
+  			<div class="card-footer">
+  				<button type="button" id="btn-comment-save" class="btn btn-outline-primary bi bi-pencil-square">등록</button>
+  			</div>
+  		</form>
+  	</div>
+  </div>
+ </html>

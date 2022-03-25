@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="https://github.com/zhanhb/thymeleaf-layout-dialect" layout:decorator="layout/fdefault">
+  <!-- HTML Head Tag -->
+	<head>
+		<title>게시판</title>
+  		<th:block th:replace="fragment/head :: headFragment"></th:block>
+  		<!-- Page level plugin CSS -->
+  		<th:block layout:fragment="contentCss">
+  		</th:block>
+	</head>
+	<body>
+		<header th:replace="fragment/header :: headerFragment"></header>
+		<div class="container" layout:fragment="content">
+			<div class="page-header">
+				<h1>게시물 목록</h1>
+			</div>
+			<div class="pull-right" style="width:100px;margin:10px 0;">
+				<a href="/post" class="btn btn-primary btn-block">등록</a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			
+			<div class="container-fluid">
+				<div class="row">
+					<table class="table table-hover">
+						<thead>
+							<tr class="warning">
+								<th class="col-sm-1">No</th>
+								<th class="col-sm-5">제목</th>
+								<th class="col-sm-3">작성 날짜</th>
+								<th class="col-sm-3">수정 날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="post : ${searchList}">
+								<td th:text="${post.id}"></td>
+								<td>
+									<a th:href="'/post/read/'+${post.id}" th:text="${post.title}"></a>
+								</td>
+								<td th:text="${post.createdDate}">
+								</td>
+								<td th:text="${post.modifiedDate}">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<!-- 페이지 영역 -->
+			<nav th:if="${totalPage!=0}" class="text-align: center;">
+				<ul class="pagination justify-content-center">
+					<li class="page-item">
+						<a class="page-link" th:href="@{/post/search(keyword=${keyword}, page=1)}" aria-label="First">&laquo;</a>
+						<span aria-hidden="true"></span>
+					</li>
+					<li class="page-item" th:if="${pageVo.hasPrev} ? 'disabled'">
+						<a class="page-link" th:href="@{/post/search(keyword=${keyword}, page=${searchList.number})}" aria-label="Previous">&lsaquo;</a>
+						 <span aria-hidden="true"></span>
+					</li>
+					<li class="page-item" th:each = "page : ${#numbers.sequence(pageVo.startNumber, pageVo.endNumber)}"
+						th:class="(${page}==${pageNo}+1) ? 'active'">
+						<a class="page-link" th:href="@{/post/search(keyword=${keyword}, page=${page})}" th:text="${page}"></a>
+					</li>
+					<li class="page-item" th:if="${pageVo.hasNext} ? 'disabled'">
+						<a class="page-link" th:href="@{/post/search(keyword=${keyword}, page=${searchList.number}+2)}" aria-lebel="Next">&rsaquo;</a>
+						<span aria-hidden="true"></span>
+					</li>
+					<li class="page-item">
+						<a class="page-link" th:href="@{/post/search(keyword=${keyword}, page=${pageVo.totalPage})}" aria-label="Last">&raquo;</a>
+						<span aria-hidden="true"></span>
+					</li>
+				</ul>
+			</nav>
+			
+			<!-- 검색 form -->
+			<form action = "/post/search" method="GET">
+				<div>
+					<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+				</div>
+				<button>검색하기</button>
+			</form>
+		</div>
+
+		
+   		<!-- 이 위치에 Bootstrap/Jquery core JavaScript가 구성된다. -->		
+		<!-- page level plugin javascript-->
+		<th:block th:replace="fragment/script :: script"></th:block>
+	</body>
+</html>
+			
+	

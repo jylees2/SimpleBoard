@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>글 수정하기</title>
+  		<th:block th:replace="fragment/head :: headFragment"></th:block>
+	</head>
+	<body>
+		<header th:replace="fragment/header :: headerFragment"></header>
+			<div class="page-header">
+				<h1>게시물 수정</h1>
+			</div>
+			<a href="/post" role="button" class="btn btn-primary btn-block">글 작성</a>
+			<br/>
+			<br/>
+			<br/>
+			<div id="post_list" class="container col-md-8">
+					<div class="card-header d-flex justify-content-between">
+						<label for="id">글 번호 : [[${id}]]</label>
+						<input type="hidden" id = "id" th:value="${id}"/>
+						<label for="modifiedDate">작성 날짜 : [[${post.modifiedDate}]]</label>
+					</div>
+				<table class="table table-hover">
+					<tr>
+						<th style="padding:13px 0 0 15px;">제목</th>
+						<td>
+							<input type="text" id="title" class="form-control input-sm" th:value="${post.title}"/>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding:14px 0 0 15px;">내용</th>
+						<td>
+							<textarea id="content" class="form-control input-sm"
+								maxlength="140" rows="70" style="height: 200px;"
+								th:text="${post.content}"></textarea>
+							<span class="help-block"></span>
+						</td>
+					</tr>
+				</table>
+				<br/>
+				<a th:href="'/post/read/'+${post.id}" role="button" class="btn btn-primary btn-block">취소</a>
+				<button type="button" id="btn-update" class="btn btn btn-info bi">수정 완료</button>
+			</div>
+		<th:block th:replace="fragment/script :: script"></th:block>	
+	</body>
+</html>

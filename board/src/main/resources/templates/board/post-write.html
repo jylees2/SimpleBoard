@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>글 작성하기</title>
+  		<th:block th:replace="fragment/head :: headFragment"></th:block>
+	</head>
+	<body>
+		<header th:replace="fragment/header :: headerFragment"></header>
+			<div class="page-header">
+				<h1>게시물 작성</h1>
+			</div>
+			<br/>
+			<div id="post_list">
+				<div class="container col-md-8">
+					<form>
+						<div class="form-group">
+							<label for="title">제목</label>
+							<input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+						</div>
+						<div class="form-group">
+							<label for="content">내용</label>
+							<textarea rows="10" class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+						</div>
+					</form>
+					<button type="button" id="btn-save" class="btn btn-primary bi bi-pencil-fill"> 작성</button>
+					<a href="/list" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
+				</div>
+			</div>
+		<th:block th:replace="fragment/script :: script"></th:block>
+	</body>
+</html>

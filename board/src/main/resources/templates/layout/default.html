@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="https://github.com/zhanhb/thymeleaf-layout-dialect">
+	
+	<head>
+		<title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE"> juyoung's board </title>
+		<th:block th:replace="fragment/head :: headFragment"></th:block>
+	</head>
+	
+	<body>
+		<header th:replace="fragment/header :: headerFragment"></header>
+		
+		<div id="wrapper" class="wrapper">
+			<div layout:fragment="content">
+			</div>
+		</div>
+		
+		<th:block th:replace="fragment/script :: script"></th:block>
+	</body>
+</html>

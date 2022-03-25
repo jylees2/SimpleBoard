@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <!-- HTML Head Tag 정보 -->
+  <head th:fragment="headFragment">
+    <!-- Meta Set -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- 공통 css 선언 -->
+    <link rel='stylesheet' th:href='@{/css/bootstrap.css}'/>
+    <!-- Content page css -->
+    <th:block layout:fragment="css"></th:block>
+  </head>
+</html>
+    
+  
